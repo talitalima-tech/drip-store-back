@@ -110,8 +110,3 @@ Comando: `npm run dev`
 
 * `GET /v1/product/search` -> Lista produtos (Suporta query params: `price-range`, `match`, `category_ids`).
 
----
-
-
----
-quivo agora no seu terminal?**
