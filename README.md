@@ -1,84 +1,97 @@
+Excelente análise! O README da sua professora é muito completo, especialmente na parte de **Funcionalidades** e na **Tabela de Endpoints**.
+
+A principal diferença é que ela usa **Docker** e a porta **3001**, enquanto você está usando **MySQL nativo (local)** e a porta **3000**. Eu mesclei o melhor dos dois mundos: mantive o visual profissional que estávamos criando, mas usei os textos e a tabela detalhada dela para garantir que seu projeto esteja 100% alinhado com o que ela espera.
+
+Aqui está o seu **README final**, ajustado e "tunado":
+
+---
+
+```markdown
 # 🛍️ Digital Store API
 
-> API para gerenciamento de e-commerce.
+> API RESTful desenvolvida para ser o backend da aplicação de e-commerce Drip Store.
 
-[Node.js](https://nodejs.org/) | [Sequelize](https://sequelize.org/) | [JWT](https://jwt.io/) |
----
-
-## 📖 Sobre o Projeto
-
-Esta API é o motor de uma **Digital Store**, permitindo o controle total de um ecossistema de vendas online. Foi desenvolvida seguindo os padrões de arquitetura **MVC** (Model-View-Controller) e as melhores práticas de desenvolvimento, garantindo um código limpo, escalável e de fácil manutenção.
-
-### 🧪 Principais Funcionalidades
-
-* **🔐 Autenticação:** Sistema de login seguro com JWT e criptografia de senhas com `bcryptjs`.
-* **👥 Users:** Gestão completa de perfis de usuários e permissões.
-* **📦 Products:** Cadastro detalhado de produtos com variantes (cores, tamanhos) e galeria de imagens.
-* **📁 Categories:** Organização lógica de produtos com suporte a slugs para rotas amigáveis.
-* **🔍 Smart Search:** Filtros avançados para busca de produtos (faixa de preço, termos e categorias).
+[Tecnologias](#-tecnologias) | [Funcionalidades](#-funcionalidades) | [Arquitetura](#-arquitetura-do-sistema) | [Como Executar](#-como-executar-o-projeto) | [Testes](#-testando-a-api)
 
 ---
 
-## 🛠️ Stack Tecnológica
+## ✨ Tecnologias
 
-| Camada | Tecnologia |
-| :--- | :--- |
-| **Runtime** | Node.js |
-| **Framework** | Express.js |
-| **Banco de Dados** | MySQL |
-| **ORM** | Sequelize |
-| **Segurança** | BCrypt + JSON Web Token (JWT) |
+Este projeto utiliza um conjunto de tecnologias robustas para o ecossistema Node.js:
+
+* **Node.js** - Ambiente de execução JavaScript no servidor.
+* **Express.js** - Framework minimalista para construção de APIs.
+* **Sequelize** - ORM para Node.js (configurado para MySQL).
+* **MySQL** - Banco de dados relacional para persistência de dados.
+* **JSON Web Tokens (JWT)** - Autenticação baseada em tokens.
+* **Bcrypt.js** - Hashing de senhas para segurança.
+* **Jest & Supertest** - Testes automatizados.
+
+---
+
+## 🔥 Funcionalidades
+
+✅ **CRUD de Usuários:** Armazenamento seguro de senhas com hashing.
+✅ **Sistema de Autenticação:** Baseado em JWT com endpoint de login.
+✅ **Middleware de Proteção:** Segurança em rotas que exigem autenticação.
+✅ **CRUD de Categorias:** Gestão completa de categorias de produtos.
+✅ **CRUD de Produtos:** Gerenciamento de associações, imagens e variantes (cores/tamanhos).
+✅ **Busca Avançada:** Filtros por nome, descrição, faixa de preço e categorias.
+✅ **Arquitetura Service Layer:** Separação da lógica de negócio dos Controllers.
 
 ---
 
 ## 📐 Arquitetura do Sistema
-
-A organização das pastas reflete a separação de responsabilidades para facilitar a manutenção:
 
 ```text
 ├── src/
 │   ├── config/      # Configurações de DB e variáveis globais
 │   ├── controllers/ # Orquestração das requisições e respostas
 │   ├── database/    # Inicialização da conexão e sincronização
-│   ├── middleware/  # Camadas de segurança e validação
+│   ├── middleware/  # Camadas de segurança e validação (JWT)
 │   ├── models/      # Definição das entidades e relacionamentos
 │   ├── routes/      # Mapeamento dos endpoints da API
-│   ├── services/    # Lógica de negócio
+│   ├── services/    # Lógica de negócio e comunicação com banco
 │   ├── app.js       # Configuração do Express
 │   └── server.js    # Inicialização do servidor e DB (Entry Point)
 ├── tests/           # Testes unitários e de integração
+└── .env             # Variáveis de ambiente (não versionado)
 
 ```
 
 ---
 
-## 🚀 Como Iniciar
+## 🛣️ Endpoints Principais
 
-### 1️⃣ Pré-requisitos
+A API está prefixada com `/v1`.
 
-* Node.js instalado (v16 ou superior)
-* Instância do MySQL rodando localmente
+| Método | Endpoint | Descrição | Requer Auth |
+| --- | --- | --- | --- |
+| **POST** | `/user` | Cria um novo usuário | Não |
+| **POST** | `/auth/token` | Realiza login e retorna token JWT | Não |
+| **GET** | `/user/:id` | Busca um usuário pelo ID | Não |
+| **PUT** | `/user/:id` | Atualiza um usuário | **Sim** |
+| **POST** | `/category` | Cria uma nova categoria | **Sim** |
+| **GET** | `/product/search` | Busca produtos com filtros avançados | Não |
 
-### 2️⃣ Instalação
+---
+
+## 🚀 Como Executar o Projeto
+
+### 1️⃣ Instalação
 
 ```bash
-# Clone o projeto
 git clone [https://github.com/talitalima-tech/drip-store-back.git](https://github.com/talitalima-tech/drip-store-back.git)
-
-# Entre na pasta
 cd drip-store-back
-
-# Instale as dependências
 npm install
 
 ```
 
-### 3️⃣ Configuração (Environment)
+### 2️⃣ Configuração (Environment)
 
-Crie um arquivo `.env` na raiz do projeto e preencha conforme o modelo abaixo:
+Crie um arquivo `.env` na raiz do projeto seguindo o modelo:
 
 ```env
-# Banco de Dados
 DB_DIALECT=mysql
 DB_HOST=localhost
 DB_USER=root
@@ -86,49 +99,40 @@ DB_PASSWORD=sua_senha_aqui
 DB_NAME=digital_store
 DB_PORT=3306
 
-# Autenticação
 JWT_SECRET=coloque_aqui_uma_chave_segura
 JWT_EXPIRES_IN=24h
-
-# Servidor
 PORT=3000
 
 ```
 
-> **Nota:** Certifique-se de criar o banco no MySQL antes de rodar: `CREATE DATABASE digital_store;`
+> **Nota:** No MySQL, execute `CREATE DATABASE digital_store;` antes de iniciar.
 
-### 4️⃣ Execução
+### 3️⃣ Execução
 
 ```bash
-# Modo de Desenvolvimento (com auto-reload)
 npm run dev
 
 ```
 
-A API estará disponível em: `http://localhost:3000`
+API disponível em: `http://localhost:3000`
 
 ---
 
+## 🧪 Testando a API
 
-## 🛣️ API Reference (Principais Endpoints)
+### Com Jest
 
-### Autenticação
+Para rodar os testes automatizados:
 
-* `POST /v1/auth/token` -> Gera token de acesso via e-mail e senha.
+```bash
+npm test
 
-### Usuários
+```
 
-* `POST /v1/user` -> Criação de nova conta de usuário.
-* `GET /v1/user/:id` -> Busca detalhes de um perfil específico (Requer Auth).
+### Com Postman/Insomnia
 
-### Produtos
-
-* `GET /v1/product/search` -> Lista produtos com suporte a filtros via query params:
-* `price-range`: Filtrar por valores.
-* `match`: Busca por nome/descrição.
-* `category_ids`: Filtrar por categorias específicas.
-
-
+1. **Criação:** Use o `POST /user` para criar sua conta.
+2. **Login:** Use o `POST /auth/token` para receber o seu Token.
+3. **Acesso:** Nas rotas protegidas, envie o token no Header como `Authorization: Bearer seu_token`.
 
 ---
-
