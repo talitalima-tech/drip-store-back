@@ -28,7 +28,6 @@ Esta API é o motor de uma **Digital Store**, permitindo o controle total de um 
 | **Banco de Dados** | MySQL |
 | **ORM** | Sequelize |
 | **Segurança** | BCrypt + JSON Web Token (JWT) |
-| **Testes** | Jest / Supertest |
 
 ---
 
@@ -36,6 +35,7 @@ Esta API é o motor de uma **Digital Store**, permitindo o controle total de um 
 
 A organização das pastas reflete a separação de responsabilidades para facilitar a manutenção:
 
+```text
 ├── src/
 │   ├── config/      # Configurações de DB e variáveis globais
 │   ├── controllers/ # Orquestração das requisições e respostas
