@@ -1,12 +1,3 @@
-Excelente análise! O README da sua professora é muito completo, especialmente na parte de **Funcionalidades** e na **Tabela de Endpoints**.
-
-A principal diferença é que ela usa **Docker** e a porta **3001**, enquanto você está usando **MySQL nativo (local)** e a porta **3000**. Eu mesclei o melhor dos dois mundos: mantive o visual profissional que estávamos criando, mas usei os textos e a tabela detalhada dela para garantir que seu projeto esteja 100% alinhado com o que ela espera.
-
-Aqui está o seu **README final**, ajustado e "tunado":
-
----
-
-```markdown
 # 🛍️ Digital Store API
 
 > API RESTful desenvolvida para ser o backend da aplicação de e-commerce Drip Store.
