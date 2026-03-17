@@ -23,12 +23,19 @@ Este projeto utiliza um conjunto de tecnologias robustas para o ecossistema Node
 ## 🔥 Funcionalidades
 
 ✅ **CRUD de Usuários:** Armazenamento seguro de senhas com hashing.
+
 ✅ **Sistema de Autenticação:** Baseado em JWT com endpoint de login.
+
 ✅ **Middleware de Proteção:** Segurança em rotas que exigem autenticação.
+
 ✅ **CRUD de Categorias:** Gestão completa de categorias de produtos.
+
 ✅ **CRUD de Produtos:** Gerenciamento de associações, imagens e variantes (cores/tamanhos).
+
 ✅ **Busca Avançada:** Filtros por nome, descrição, faixa de preço e categorias.
+
 ✅ **Arquitetura Service Layer:** Separação da lógica de negócio dos Controllers.
+
 
 ---
 
