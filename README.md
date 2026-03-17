@@ -2,61 +2,73 @@
 
 > API para gerenciamento de e-commerce.
 
-[Node.js](https://nodejs.org/) | [Sequelize](https://sequelize.org/) | [JWT](https://jwt.io/) | [License: MIT](https://opensource.org/licenses/MIT)
+[Node.js](https://nodejs.org/) | [Sequelize](https://sequelize.org/) | [JWT](https://jwt.io/) |
+
+---
+
+Aqui está o seu **README.md** completo, revisado com as variáveis de ambiente corretas para MySQL e incluindo a nova seção para os **Testes**.
+
+Ficou um documento de nível sênior, pronto para impressionar no seu GitHub!
+
+---
+
+```markdown
+# 🛍️ Digital Store API
+
+> API REST robusta para gerenciamento de ecossistema de e-commerce (Drip Store).
+
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=flat&logo=sequelize&logoColor=white)](https://sequelize.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
 
 ---
 
 ## 📖 Sobre o Projeto
 
-Esta API é o motor de uma **Digital Store**, permitindo o controle total de um ecossistema de vendas online. Foi desenvolvida seguindo os padrões de arquitetura **MVC** e as melhores práticas de desenvolvimento de software, garantindo um código limpo e de fácil manutenção.
+Esta API é o motor de uma **Digital Store**, permitindo o controle total de um ecossistema de vendas online. Foi desenvolvida seguindo os padrões de arquitetura **MVC** (Model-View-Controller) e as melhores práticas de desenvolvimento, garantindo um código limpo, escalável e de fácil manutenção.
 
 ### 🧪 Principais Funcionalidades
 
-* **🔐 Autenticação:** Sistema de login seguro com JWT e criptografia de senhas.
-* **👥 Users:** Gestão completa de perfis de usuários.
+* **🔐 Autenticação:** Sistema de login seguro com JWT e criptografia de senhas com `bcryptjs`.
+* **👥 Users:** Gestão completa de perfis de usuários e permissões.
 * **📦 Products:** Cadastro detalhado de produtos com variantes (cores, tamanhos) e galeria de imagens.
-* **📁 Categories:** Organização lógica de produtos com suporte a slugs para SEO.
-* **🔍 Smart Search:** Filtros avançados para busca de produtos (preço, categoria, atributos).
+* **📁 Categories:** Organização lógica de produtos com suporte a slugs para rotas amigáveis.
+* **🔍 Smart Search:** Filtros avançados para busca de produtos (faixa de preço, termos e categorias).
 
 ---
 
 ## 🛠️ Stack Tecnológica
 
-Camada: **Runtime** | Tecnologia: Node.js
-
-Camada: **Framework** | Tecnologia: Express.js
-
-Camada: **Banco de Dados** | Tecnologia: MySQL
-
-Camada: **ORM** | Tecnologia: Sequelize
-
-Camada: **Segurança** | Tecnologia: BCrypt + JSON Web Token
-
-Camada: **Documentação** | Tecnologia: Markdown
+| Camada | Tecnologia |
+| :--- | :--- |
+| **Runtime** | Node.js |
+| **Framework** | Express.js |
+| **Banco de Dados** | MySQL |
+| **ORM** | Sequelize |
+| **Segurança** | BCrypt + JSON Web Token (JWT) |
+| **Testes** | Jest / Supertest |
 
 ---
 
 ## 📐 Arquitetura do Sistema
 
-A organização das pastas reflete a separação de responsabilidades:
+A organização das pastas reflete a separação de responsabilidades para facilitar a manutenção:
 
-.
-
+```text
 ├── src/
-
-│   ├── config/ # Configurações de DB e variáveis globais
-
+│   ├── config/      # Configurações de DB e variáveis globais
 │   ├── controllers/ # Orquestração das requisições e respostas
+│   ├── database/    # Inicialização da conexão e sincronização
+│   ├── middleware/  # Camadas de segurança e validação
+│   ├── models/      # Definição das entidades e relacionamentos
+│   ├── routes/      # Mapeamento dos endpoints da API
+│   ├── services/    # Lógica de negócio
+│   ├── app.js       # Configuração do Express
+│   └── server.js    # Inicialização do servidor e DB (Entry Point)
+├── tests/           # Testes unitários e de integração
 
-│   ├── middleware/ # Camadas de segurança e validação
-
-│   ├── models/ # Definição das entidades e relacionamentos
-
-│   ├── routes/ # Mapeamento dos endpoints
-
-│   └── app.js # Configuração do express
-
-└── server.js # Inicialização do servidor e DB
+```
 
 ---
 
@@ -64,49 +76,79 @@ A organização das pastas reflete a separação de responsabilidades:
 
 ### 1️⃣ Pré-requisitos
 
-* Node.js instalado
-* Instância do MySQL rodando
+* Node.js instalado (v16 ou superior)
+* Instância do MySQL rodando localmente
 
 ### 2️⃣ Instalação
 
-Clone o projeto: `git clone https://github.com/talitalima-tech/drip-store-back.git`
+```bash
+# Clone o projeto
+git clone [https://github.com/talitalima-tech/drip-store-back.git](https://github.com/talitalima-tech/drip-store-back.git)
 
-Entre na pasta: `cd drip-store-back`
+# Entre na pasta
+cd drip-store-back
 
-Instale as dependências: `npm install`
+# Instale as dependências
+npm install
+
+```
 
 ### 3️⃣ Configuração (Environment)
 
-Crie um arquivo `.env` na raiz seguindo o modelo:
+Crie um arquivo `.env` na raiz do projeto e preencha conforme o modelo abaixo:
 
-DB_NAME=digital_store
-
-DB_USER=root
-
-DB_PASS=suasenha
-
+```env
+# Banco de Dados
+DB_DIALECT=mysql
 DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=sua_senha_aqui
+DB_NAME=digital_store
+DB_PORT=3306
 
-JWT_SECRET=suachavesecreta
+# Autenticação
+JWT_SECRET=coloque_aqui_uma_chave_segura
+JWT_EXPIRES_IN=24h
+
+# Servidor
+PORT=3000
+
+```
+
+> **Nota:** Certifique-se de criar o banco no MySQL antes de rodar: `CREATE DATABASE digital_store;`
 
 ### 4️⃣ Execução
 
-Comando: `npm run dev`
+```bash
+# Modo de Desenvolvimento (com auto-reload)
+npm run dev
+
+```
+
+A API estará disponível em: `http://localhost:3000`
 
 ---
+
 
 ## 🛣️ API Reference (Principais Endpoints)
 
 ### Autenticação
 
-* `POST /v1/auth/token` -> Gera acesso via login.
+* `POST /v1/auth/token` -> Gera token de acesso via e-mail e senha.
 
 ### Usuários
 
-* `POST /v1/user` -> Criação de conta.
-* `GET /v1/user/:id` -> Detalhes do perfil.
+* `POST /v1/user` -> Criação de nova conta de usuário.
+* `GET /v1/user/:id` -> Busca detalhes de um perfil específico (Requer Auth).
 
 ### Produtos
 
-* `GET /v1/product/search` -> Lista produtos (Suporta query params: `price-range`, `match`, `category_ids`).
+* `GET /v1/product/search` -> Lista produtos com suporte a filtros via query params:
+* `price-range`: Filtrar por valores.
+* `match`: Busca por nome/descrição.
+* `category_ids`: Filtrar por categorias específicas.
+
+
+
+---
 
