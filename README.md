@@ -3,25 +3,6 @@
 > API para gerenciamento de e-commerce.
 
 [Node.js](https://nodejs.org/) | [Sequelize](https://sequelize.org/) | [JWT](https://jwt.io/) |
-
----
-
-Aqui está o seu **README.md** completo, revisado com as variáveis de ambiente corretas para MySQL e incluindo a nova seção para os **Testes**.
-
-Ficou um documento de nível sênior, pronto para impressionar no seu GitHub!
-
----
-
-```markdown
-# 🛍️ Digital Store API
-
-> API REST robusta para gerenciamento de ecossistema de e-commerce (Drip Store).
-
-[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=flat&logo=sequelize&logoColor=white)](https://sequelize.org/)
-[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
-
 ---
 
 ## 📖 Sobre o Projeto
@@ -55,7 +36,6 @@ Esta API é o motor de uma **Digital Store**, permitindo o controle total de um 
 
 A organização das pastas reflete a separação de responsabilidades para facilitar a manutenção:
 
-```text
 ├── src/
 │   ├── config/      # Configurações de DB e variáveis globais
 │   ├── controllers/ # Orquestração das requisições e respostas
